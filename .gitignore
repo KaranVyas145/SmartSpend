@@ -1,0 +1,52 @@
+# Ignore Visual Studio temporary files, build results, and user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+
+# Visual Studio Code settings
+.vscode/
+
+# Rider IDE
+.idea/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Dotnet CLI tools
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core
+appsettings.*.json.user
+launchSettings.json
+
+# Logs
+*.log
+logs/
+*.trace
+
+# Rider specific caches
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore everything in api/SmartSpend/bin and obj
+/api/SmartSpend/bin/
+/api/SmartSpend/obj/
+
+# Optional: Ignore user secrets (if used)
+/api/SmartSpend/Secrets/
+
+# Optional: Ignore test results
+/test-results/
