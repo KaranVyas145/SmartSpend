@@ -10,7 +10,9 @@ namespace SmartSpend.Extensions
         {
             CreateMap<User, UserBaseDto>().ReverseMap();
 
-            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDto, Category>().ForMember(dest => dest.Id, opt => opt.Ignore()); // Ignore Id property in CategoryDto>
+
 
         }
     }
