@@ -10,5 +10,6 @@ namespace SmartSpend.Data
         {
             
         }
+        public DbSet<Category> Categories { get; set; } 
     }
 }

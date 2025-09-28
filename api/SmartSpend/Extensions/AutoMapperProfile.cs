@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using SmartSpend.Dtos;
+using SmartSpend.Models;
 
 namespace SmartSpend.Extensions
 {
@@ -6,7 +8,10 @@ namespace SmartSpend.Extensions
     {
         public AutoMapperProfile()
         {
-            
+            CreateMap<User, UserBaseDto>().ReverseMap();
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
+
         }
     }
 }
