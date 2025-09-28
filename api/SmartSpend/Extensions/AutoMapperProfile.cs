@@ -12,6 +12,10 @@ namespace SmartSpend.Extensions
 
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>().ForMember(dest => dest.Id, opt => opt.Ignore()); // Ignore Id property in CategoryDto>
+            CreateMap<Transaction, TransactionDto>(); // Map Transaction to TransactionDto>
+            CreateMap<TransactionDto, Transaction>()
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.CategoryId, opt => opt.Ignore());
 
 
         }
