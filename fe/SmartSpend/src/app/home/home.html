@@ -1,0 +1,125 @@
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <!-- container: Bootstrap class for centered content with padding -->
+  <div class="container">
+    <!-- Brand name -->
+    <a class="navbar-brand fw-bold text-primary fs-3" href="#">SmartSpends</a>
+    
+    <!-- Navigation links -->
+    <div class="navbar-nav ms-auto">
+      <!-- ms-auto: pushes links to the right -->
+      <a routerLink="/login" class="nav-link me-3">Login</a>
+      <a routerLink="/register" class="nav-link">Register</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section using Bootstrap utilities -->
+<section class="bg-light py-5" style="min-height: 80vh;">
+  <!-- py-5: padding top and bottom, min-height for full section -->
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+      <!-- justify-content-center: centers horizontally -->
+      <!-- align-items-center: centers vertically -->
+      <div class="col-lg-8 text-center">
+        
+        <!-- Hero Icon -->
+        <img src="assets/images/logo/smartspends-icon.png" 
+             alt="SmartSpends Logo" 
+             class="mb-4"
+             style="width: 128px; height: auto;">
+        
+        <!-- Main Title with gradient effect -->
+        <h1 class="display-3 fw-bold mb-3 hero-title">SmartSpends</h1>
+        
+        <!-- Subtitle -->
+        <p class="lead text-muted mb-5">
+          Your Personal Finance Manager for Smarter Decisions
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <!-- d-flex: flexbox, gap-3: space between buttons -->
+          <a routerLink="/register" class="btn btn-primary btn-lg px-4 py-3">
+            Get Started
+          </a>
+          <button class="btn btn-outline-primary btn-lg px-4 py-3">
+            Learn More
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark">Why Choose SmartSpends?</h2>
+      </div>
+    </div>
+    
+    <!-- Features Grid -->
+    <div class="row g-4">
+      <!-- g-4: gap between grid items -->
+      
+      <!-- Feature Card 1 -->
+      <div class="col-lg-4 col-md-6">
+        <!-- col-lg-4: 3 columns on large screens, col-md-6: 2 columns on medium -->
+        <div class="card h-100 border-0 shadow-sm hover-card">
+          <!-- h-100: full height, border-0: no border, shadow-sm: subtle shadow -->
+          <div class="card-body text-center p-4">
+            <div class="feature-icon mb-3">📊</div>
+            <h5 class="card-title fw-bold mb-3">Expense Tracking</h5>
+            <p class="card-text text-muted">
+              Never wonder where your money went. Track every penny with intelligent categorization.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Feature Card 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 border-0 shadow-sm hover-card">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon mb-3">🎯</div>
+            <h5 class="card-title fw-bold mb-3">Smart Budgets</h5>
+            <p class="card-text text-muted">
+              Stay on track with intelligent spending alerts and budget recommendations.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Feature Card 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 border-0 shadow-sm hover-card">
+          <div class="card-body text-center p-4">
+            <div class="feature-icon mb-3">📈</div>
+            <h5 class="card-title fw-bold mb-3">Financial Insights</h5>
+            <p class="card-text text-muted">
+              Understand your habits with clear reports and actionable financial insights.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-light py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="mb-0">&copy; 2025 SmartSpends. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,186 @@
+/* Full height container */
+.login-container {
+  min-height: 100vh;        /* Full viewport height */
+}
+
+/* LEFT SIDE - Welcome Section */
+.welcome-section {
+  background: linear-gradient(135deg, #1e40af 0%, #0891b2 50%, #3b82f6 100%);
+  /* ↑ Beautiful gradient using your brand colors */
+  display: flex;            /* Flexbox for centering */
+  align-items: center;      /* Vertical center */
+  justify-content: center;  /* Horizontal center */
+  padding: 60px 40px;       /* Internal spacing */
+  position: relative;       /* For decorative elements */
+  overflow: hidden;         /* Hide overflow for effects */
+}
+
+/* Add subtle pattern overlay */
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+  /* ↑ Creates subtle dot pattern overlay */
+  background-size: 50px 50px;
+}
+
+.welcome-content {
+  position: relative;       /* Above the pattern */
+  z-index: 2;              /* Ensure content is above pattern */
+  text-align: center;      /* Center all content */
+  color: white;            /* White text on gradient */
+}
+
+.welcome-icon {
+  width: 100px;            /* Icon size */
+  height: auto;            /* Maintain aspect ratio */
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  /* ↑ Add subtle shadow to icon */
+}
+
+.welcome-title {
+  font-size: 2.5rem;       /* Large title */
+  font-weight: 700;        /* Bold */
+  margin-bottom: 1rem;     /* Space below */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* ↑ Subtle text shadow for readability */
+}
+
+.welcome-subtitle {
+  font-size: 1.1rem;       /* Slightly larger than normal */
+  opacity: 0.9;            /* Slightly transparent */
+  line-height: 1.6;        /* Better line spacing */
+  margin-bottom: 2rem;     /* Space below */
+}
+
+/* Feature highlights */
+.welcome-features {
+  display: flex;           /* Side by side */
+  gap: 2rem;              /* Space between items */
+  justify-content: center; /* Center the items */
+  flex-wrap: wrap;        /* Wrap on small screens */
+}
+
+.feature-item {
+  display: flex;          /* Icon and text side by side */
+  align-items: center;    /* Vertically center */
+  gap: 0.5rem;           /* Space between icon and text */
+  font-size: 0.9rem;     /* Slightly smaller text */
+  opacity: 0.8;          /* Slightly transparent */
+}
+
+.feature-icon {
+  font-size: 1.2rem;     /* Larger emoji */
+}
+
+/* RIGHT SIDE - Form Section */
+.form-section {
+  display: flex;          /* Flexbox for centering */
+  align-items: center;    /* Vertical center */
+  justify-content: center; /* Horizontal center */
+  min-height: 100vh;      /* Full height */
+  padding: 40px 20px;     /* Padding around form */
+  background-color: white; /* White background */
+}
+
+.form-container {
+  width: 100%;            /* Full width */
+  max-width: 400px;       /* But not too wide */
+  padding: 30px;          /* Internal padding */
+  border-radius: 16px;    /* Rounded corners */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  /* ↑ Beautiful shadow for depth */
+  background: white;      /* White background */
+}
+
+.form-title {
+  font-size: 2rem;        /* Large form title */
+  font-weight: 700;       /* Bold */
+  color: #1e293b;         /* Dark text */
+  margin-bottom: 0.5rem;  /* Space below */
+}
+
+/* Enhanced form controls */
+.form-control-lg {
+  padding: 16px 20px;     /* Larger padding */
+  border-radius: 12px;    /* More rounded */
+  border: 2px solid #e2e8f0;  /* Light border */
+  transition: all 0.3s ease;  /* Smooth transitions */
+}
+
+.form-control-lg:focus {
+  border-color: #3b82f6;  /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  /* ↑ Blue glow effect on focus */
+  outline: none;          /* Remove default outline */
+}
+
+/* Password toggle button */
+.btn-outline-secondary {
+  border-left: none;      /* No left border (connects with input) */
+  border-color: #e2e8f0;  /* Match input border */
+}
+
+.password-toggle-icon {
+  font-size: 1rem;        /* Icon size */
+  user-select: none;      /* Prevent text selection */
+}
+
+/* Enhanced primary button */
+.btn-primary {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  /* ↑ Gradient button matching your brand */
+  border: none;           /* No border */
+  border-radius: 12px;    /* Rounded */
+  padding: 16px;          /* Large padding */
+  font-weight: 600;       /* Semi-bold */
+  transition: all 0.3s ease;  /* Smooth transitions */
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);  /* Lift effect */
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+  /* ↑ Blue shadow on hover */
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;           /* Fade when disabled */
+  cursor: not-allowed;    /* Show not-allowed cursor */
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+  width: 1rem;            /* Small spinner */
+  height: 1rem;           /* Small spinner */
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  /* On tablets and mobile */
+  .form-container {
+    margin: 20px;         /* Add margins */
+    padding: 30px;        /* Reduce padding */
+  }
+  
+  .form-section {
+    min-height: 100vh;    /* Still full height */
+    padding: 20px;        /* Less padding */
+  }
+}
+
+@media (max-width: 576px) {
+  /* On mobile phones */
+  .form-container {
+    padding: 20px;        /* Even less padding */
+    border-radius: 12px;  /* Less rounded */
+  }
+  
+  .welcome-features {
+    flex-direction: column; /* Stack features vertically */
+    gap: 1rem;            /* Less space */
+  }
+}

@@ -1,0 +1,173 @@
+<!-- Full height container -->
+<div class="login-container">
+  <!-- Two-column layout using Bootstrap grid -->
+  <div class="row g-0 h-100">
+    
+    <!-- LEFT SIDE - Branding/Welcome -->
+    <div class="col-lg-6 d-none d-lg-flex">
+      <!-- d-none d-lg-flex: hidden on mobile, visible on large screens -->
+      <div class="welcome-section">
+        
+        <!-- Your SmartSpends icon -->
+        <div class="welcome-content">
+          <img src="assets/images/logo/smartspends-icon.png" 
+               alt="SmartSpends" 
+               class="welcome-icon mb-4">
+          
+          <!-- Welcome message -->
+          <h2 class="welcome-title">Welcome Back!</h2>
+          <p class="welcome-subtitle">
+            Sign in to continue managing your finances with SmartSpends
+          </p>
+          
+          <!-- Decorative elements -->
+          <div class="welcome-features">
+            <div class="feature-item">
+              <i class="feature-icon">📊</i>
+              <span>Track Expenses</span>
+            </div>
+            <div class="feature-item">
+              <i class="feature-icon">🎯</i>
+              <span>Smart Budgets</span>
+            </div>
+            <div class="feature-item">
+              <i class="feature-icon">📈</i>
+              <span>Financial Insights</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- RIGHT SIDE - Login Form -->
+    <div class="col-lg-6 col-12">
+      <div class="form-section">
+        <div class="form-container">
+          
+          <!-- Mobile logo (only visible on small screens) -->
+          <div class="d-lg-none text-center mb-4">
+            <!-- d-lg-none: only visible on screens smaller than lg -->
+            <img src="assets/images/smartspends-icon.png" 
+                 alt="SmartSpends" 
+                 style="width: 80px; height: auto;">
+          </div>
+          
+          <!-- Form header -->
+          <div class="text-center mb-5">
+            <h3 class="form-title">Sign In</h3>
+            <p class="text-muted">Enter your credentials to access your account</p>
+          </div>
+          
+          <!-- Login Form -->
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+            <!-- (ngSubmit): calls onLogin() when form is submitted -->
+            <!-- #loginForm="ngForm": creates form reference for validation -->
+            
+            <!-- Email Input -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" 
+                     id="email"
+                     class="form-control form-control-lg"
+                     [(ngModel)]="loginData.email"
+                     name="email"
+                     placeholder="Enter your email"
+                     required
+                     #emailInput="ngModel">
+              <!-- [(ngModel)]: two-way data binding -->
+              <!-- required: makes field mandatory -->
+              <!-- #emailInput="ngModel": reference for validation -->
+              
+              <!-- Email validation error -->
+              <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger mt-1">
+                <!-- *ngIf: only show if conditions are met -->
+                <small>Please enter a valid email address</small>
+              </div>
+            </div>
+            
+            <!-- Password Input -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <div class="input-group input-group-lg">
+                <!-- input-group: Bootstrap class for input with button -->
+                <input [type]="showPassword ? 'text' : 'password'"
+                       id="password"
+                       class="form-control"
+                       [(ngModel)]="loginData.password"
+                       name="password"
+                       placeholder="Enter your password"
+                       required
+                       #passwordInput="ngModel">
+                <!-- [type]: dynamic type based on showPassword boolean -->
+                
+                <!-- Password toggle button -->
+                <button type="button" 
+                        class="btn btn-outline-secondary"
+                        (click)="togglePasswordVisibility()">
+                  <!-- (click): calls method when clicked -->
+                  <i class="password-toggle-icon">
+                    {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+                  </i>
+                  <!-- {{ }}: interpolation - shows different icon based on state -->
+                </button>
+              </div>
+              
+              <!-- Password validation error -->
+              <div *ngIf="passwordInput.invalid && passwordInput.touched" class="text-danger mt-1">
+                <small>Password is required</small>
+              </div>
+            </div>
+            
+            <!-- Remember Me & Forgot Password -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <!-- d-flex: flexbox layout -->
+              <!-- justify-content-between: space items apart -->
+              
+              <!-- Remember me checkbox -->
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">
+                  Remember me
+                </label>
+              </div>
+              
+              <!-- Forgot password link -->
+              <a routerLink="/forgot-password" class="text-decoration-none">
+                Forgot Password?
+              </a>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" 
+                    class="btn btn-primary btn-lg w-100 mb-3"
+                    [disabled]="loginForm.invalid || isLoading">
+              <!-- [disabled]: disables button if form invalid or loading -->
+              <!-- w-100: full width button -->
+              
+              <!-- Loading spinner or text -->
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2">
+                <!-- *ngIf: only show when loading -->
+              </span>
+              {{ isLoading ? 'Signing In...' : 'Sign In' }}
+              <!-- {{ }}: shows different text based on loading state -->
+            </button>
+            
+          </form>
+          
+          <!-- Sign up link -->
+          <div class="text-center">
+            <p class="mb-0">
+              Don't have an account? 
+              <a routerLink="/register" class="text-decoration-none fw-bold">
+                Sign up here
+              </a>
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
