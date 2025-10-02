@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartSpend.Dtos;
+using SmartSpend.Helper;
 using SmartSpend.Models;
 using SmartSpend.Services;
 
@@ -52,17 +53,17 @@ namespace SmartSpend.Controllers
             try
             {
                 var response = await _userService.LoginUserAsync(model.Email, model.Password);
-                return Ok(response);
+                return ApiResponse.Success(response);
             }
             catch (UnauthorizedAccessException ex)
             {
                 _logger.LogWarning(ex, "Unauthorized login attempt");
-                return Unauthorized("Invalid credentials");
+                return ApiResponse.Unauthorized("Invalid username or password");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unexpected error during login");
-                return StatusCode(500, "An error occurred while logging in");
+                return ApiResponse.BadRequest("An error occurred while logging in");
             }
         }
 
@@ -75,17 +76,17 @@ namespace SmartSpend.Controllers
             try
             {
                 var response = await _userService.RefreshAccessTokenAsync(model.RefreshToken);
-                return Ok(response);
+                return ApiResponse.Success(response);
             }
             catch (UnauthorizedAccessException ex)
             {
                 _logger.LogWarning(ex, "Invalid refresh token");
-                return Unauthorized("Invalid or expired refresh token");
+                return ApiResponse.Unauthorized("Invalid refresh token");
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unexpected error while refreshing token");
-                return StatusCode(500, "An error occurred while refreshing token");
+                return ApiResponse.BadRequest("An error occurred while refreshing token");
             }
         }
 
@@ -101,7 +102,7 @@ namespace SmartSpend.Controllers
                 return Unauthorized();
 
             await _userService.LogoutUserAsync(userId);
-            return Ok("User logged out successfully");
+            return ApiResponse.Success("User logged out successfully.");
         }
     }
 }
