@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserLoginDto, UserLoginResponseDto } from '../../../models/user-models';
+import { User, UserLoginDto, UserLoginResponseDto, UserRegisterDto } from '../../../models/user-models';
 import { environment } from '../../../environment';
 import { catchError, map, Observable } from 'rxjs';
 import { ApiResponse } from '../../../models/ApiResponse';
@@ -91,7 +91,31 @@ export class AuthenticationService {
         })
 
       );
+  }
 
+  register(userDetails: UserRegisterDto): Observable<any> {
+    this._isLoading.set(true);
+    this._error.set(null);
+
+    return this.http.post<any>(environment.apiUrl+ '/api/Auth/register', userDetails).pipe(
+      map((response: ApiResponse<any>) => {
+        if (response.statusCode === 200) {
+          this._isLoading.set(false);
+          return response.data;
+        } else {
+          // Handle API success: false
+          const errorMsg = response.message || 'Registration failed';
+          console.error('❌ Registration failed:', errorMsg);
+          throw new Error(errorMsg);
+        }
+      }),
+      catchError((error) => {
+        console.error('❌ Registration failed:', error);
+        this._isLoading.set(false);
+        this._error.set(error.message);
+        throw error;
+      })
+    )
   }
 
 }

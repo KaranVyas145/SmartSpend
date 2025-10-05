@@ -1,0 +1,195 @@
+<!-- Full height container -->
+<div class="login-container">
+    <!-- Two-column layout using Bootstrap grid -->
+    <div class="row g-0 h-100">
+
+        <!-- LEFT SIDE - Branding/Welcome (same as before) -->
+        <div class="col-lg-6 d-none d-lg-flex">
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <img src="assets/images/logo/smartspends-icon.png" alt="SmartSpends" class="welcome-icon mb-4">
+
+                    <h2 class="welcome-title">Welcome!</h2>
+                    <p class="welcome-subtitle">
+                        register to start managing your finances with SmartSpends
+                    </p>
+
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <i class="feature-icon">📊</i>
+                            <span>Track Expenses</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="feature-icon">🎯</i>
+                            <span>Smart Budgets</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="feature-icon">📈</i>
+                            <span>Financial Insights</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - Login Form with Reactive Forms -->
+        <div class="col-lg-6 col-12">
+            <div class="form-section">
+                <div class="form-container">
+
+                    <!-- Mobile logo -->
+                    <div class="d-lg-none text-center mb-4">
+                        <img src="assets/images/smartspends-icon.png" alt="SmartSpends"
+                            style="width: 80px; height: auto;">
+                    </div>
+
+                    <!-- Form header -->
+                    <div class="text-center mb-5">
+                        <h3 class="form-title">Sign Up</h3>
+                        <p class="text-muted">Enter your details to create your account</p>
+                    </div>
+
+                    <!-- REACTIVE FORM -->
+                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" novalidate>
+                        <!-- [formGroup]: Binds form to our reactive form group -->
+                        <!-- (ngSubmit): Calls onLogin() when form is submitted -->
+                        <!-- novalidate: Disables browser's default validation -->
+
+                        <!-- Username Input with Reactive Form Control -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" class="form-control form-control-lg"
+                                [class.is-invalid]="hasError('username', 'required')" formControlName="username"
+                                placeholder="Enter your username">
+                            <!-- formControlName: Links input to reactive form control -->
+                            <!-- [class.is-invalid]: Adds Bootstrap error class if field has errors -->
+
+                            <!-- Username validation errors -->
+                            @if(username && (username.dirty || username.touched))
+                            {
+                            <div class="invalid-feedback">
+                                <!-- *ngIf: Only show if field is invalid and user has interacted -->
+                                {{ getErrorMessage('username') }}
+                                <!-- {{ }}: Display the specific error message -->
+                            </div>
+                            }
+
+                        </div>
+
+                        <!-- Email Input with Reactive Form Control -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control form-control-lg"
+                                [class.is-invalid]="hasError('email', 'required') || hasError('email', 'email')"
+                                formControlName="email" placeholder="Enter your email">
+                            <!-- formControlName: Links input to reactive form control -->
+                            <!-- [class.is-invalid]: Adds Bootstrap error class if field has errors -->
+
+                            <!-- Email validation errors -->
+                            @if(email && email.invalid && (email.dirty || email.touched))
+                            {
+                            <div class="invalid-feedback">
+                                <!-- *ngIf: Only show if field is invalid and user has interacted -->
+                                {{ getErrorMessage('email') }}
+                                <!-- {{ }}: Display the specific error message -->
+                            </div>
+                            }
+
+                        </div>
+
+                        <!-- Password Input with Reactive Form Control -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group input-group-lg">
+                                <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
+                                    [class.is-invalid]="hasError('password', 'required') || hasError('password', 'minlength')"
+                                    formControlName="password" placeholder="Enter your password">
+                                <!-- [type]: Dynamic type based on showPassword boolean -->
+
+                                <!-- Password toggle button -->
+                                <button type="button" class="btn btn-outline-secondary"
+                                    (click)="togglePasswordVisibility()">
+                                    <i class="password-toggle-icon">
+                                        {{ showPassword ? '🙈' : '👁️' }}
+                                    </i>
+                                </button>
+                            </div>
+                        </div>
+
+                          <!-- Confirm Password Input with Reactive Form Control -->
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <div class="input-group input-group-lg">
+                                    <input [type]="showConfirmPassword ? 'text' : 'password'" id="password"
+                                        class="form-control"
+                                        [class.is-invalid]="hasError('confirmPassword', 'required') || !checkPasswordMatch()"
+                                        formControlName="confirmPassword" placeholder="Enter your password">
+                                    <!-- [type]: Dynamic type based on showPassword boolean -->
+
+                                    <!-- Password toggle button -->
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        (click)="toggleConfirmPasswordVisibility()">
+                                        <i class="password-toggle-icon">
+                                            {{ showConfirmPassword ? '🙈' : '👁️' }}
+                                        </i>
+                                    </button>
+                                </div>
+
+                                <!-- Password validation errors -->
+                                @if(confirmPassword && confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched))
+                                {
+                                <div class="invalid-feedback">
+                                    {{ getErrorMessage('confirmPassword') }}
+                                </div>
+                                }
+
+                            </div>
+
+                          
+                            <!-- Remember Me & Forgot Password -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        Remember me
+                                    </label>
+                                </div>
+
+                                <a routerLink="/forgot-password" class="text-decoration-none">
+                                    Forgot Password?
+                                </a>
+                            </div>
+
+                            <!-- Submit Button with Form Validation -->
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3"
+                                [disabled]="authenticationService.isLoading() || registerForm.invalid">
+                                <!-- [disabled]: Button disabled if form invalid or loading -->
+
+                                <!-- Loading spinner -->
+                                @if(authenticationService.isLoading())
+                                {
+                                <span class="spinner-border spinner-border-sm me-2" role="status">
+                                </span>
+                                }
+
+                                {{ authenticationService.isLoading() ? 'Signing In...' : 'Sign In' }}
+                            </button>
+
+                    </form>
+
+                    <!-- Sign up link -->
+                    <div class="text-center">
+                        <p class="mb-0">
+                            Don't have an account?
+                            <a routerLink="/register" class="text-decoration-none fw-bold">
+                                Sign up here
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

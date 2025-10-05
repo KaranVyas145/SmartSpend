@@ -32,7 +32,7 @@ namespace SmartSpend.Controllers
 
             var user = new User
             {
-                UserName = model.UserName,
+                UserName = model.UserName == null ? model.UserName : model.Email,
                 Email = model.Email
             };
 
@@ -41,7 +41,7 @@ namespace SmartSpend.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            return Ok("User registered successfully");
+            return ApiResponse.Success(result);
         }
 
         /// <summary>

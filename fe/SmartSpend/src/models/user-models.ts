@@ -6,9 +6,9 @@ export interface UserLoginDto
 
 export interface UserBaseDto
 {
-    Username: string;
-    Email: string;
-    PhoneNumber: string;
+    Username?: string;
+    Email?: string;
+    PhoneNumber?: string;
 }
 
 export interface UserRegisterDto extends UserBaseDto
@@ -29,3 +29,4 @@ export interface User extends UserLoginResponseDto
 {
 
 }
+
