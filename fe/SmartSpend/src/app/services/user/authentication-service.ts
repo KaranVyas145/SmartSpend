@@ -14,7 +14,6 @@ import { ApiResponse } from '../../../models/ApiResponse';
 
 export class AuthenticationService {
   private http = inject(HttpClient);
-  private route = inject(Router);
 
   private _isAuthenticated = signal<boolean>(false);
   private _currentUser = signal<User | null>(null);
@@ -71,7 +70,6 @@ export class AuthenticationService {
               this._isAuthenticated.set(true);
               this._currentUser.set(response.data);
               this._isLoading.set(false);
-              this.route.navigate(['']);
               return response.data
             }
             else {

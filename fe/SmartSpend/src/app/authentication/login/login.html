@@ -120,17 +120,17 @@
 
                         <!-- Submit Button with Form Validation -->
                         <button type="submit" class="btn btn-primary btn-lg w-100 mb-3"
-                            [disabled]="loginForm.invalid || isLoading">
+                            [disabled]="authenticationService.isLoading() || loginForm.invalid">
                             <!-- [disabled]: Button disabled if form invalid or loading -->
 
                             <!-- Loading spinner -->
-                            @if(isLoading)
+                            @if(authenticationService.isLoading())
                             {
                             <span class="spinner-border spinner-border-sm me-2" role="status">
                             </span>
                             }
 
-                            {{ isLoading ? 'Signing In...' : 'Sign In' }}
+                             {{ authenticationService.isLoading() ? 'Signing In...' : 'Sign In' }}
                         </button>
 
 

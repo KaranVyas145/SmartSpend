@@ -5,7 +5,7 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../services/user/authentication-service';
 import { UserLoginDto } from '../../../models/user-models';
 
@@ -22,10 +22,10 @@ export class Login implements OnInit {
 
   // Inject auth service
   authenticationService = inject(AuthenticationService);
+  router = inject(Router);
 
   // UI state properties
   showPassword = false;     // ← Controls password visibility toggle
-  isLoading = false;       // ← Shows loading state during login
 
   // Inject FormBuilder service for creating reactive forms
   constructor(private formBuilder: FormBuilder) {
@@ -79,29 +79,27 @@ export class Login implements OnInit {
   onLogin(): void {
     // Check if form is valid before proceeding
     if (this.loginForm.valid) {
-      this.isLoading = true;   // ← Start loading state
 
       const formData = this.loginForm.value;
-      
+
       const userLoginRequest: UserLoginDto = {
         Email: formData.email,
         Password: formData.password
       };
 
-      this.authenticationService.login(userLoginRequest).subscribe(
-        (response: any) => {
-          console.log('Login successful', response.data);
-          this.isLoading = false;   // ← End loading state
+      this.authenticationService.login(userLoginRequest).subscribe({
+        next: (response) => {
+          console.log('Login successful', response);
+          this.router.navigate(['/dashboard']); // Better route
         },
-        (error: any) => {
-          console.error('Login failed', error);
-          this.isLoading = false;   // ← End loading state
+        error: (error) => {
+          console.error('❌ Login failed:', error);
         }
-      )
+      });
 
-      }
+    }
 
-     else {
+    else {
       // Mark all fields as touched to show validation errors
       this.loginForm.markAllAsTouched();
       // ↑ This will display validation errors for invalid fields
